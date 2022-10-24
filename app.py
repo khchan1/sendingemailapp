@@ -20,7 +20,7 @@ def send_simple_message():
 		"https://api.mailgun.net/v3/" + str(MAILGUN_DOMAIN) + "/messages",
 		auth=("api", MAILGUN_API_KEY),
 		data={"from": "Excited User <mailgun@" + str(MAILGUN_DOMAIN) ,
-			"to": ["billy.chan@macys.com"],
+			"to": ["herokutext@gmail.com"],
 			"subject": "Sending function - Testing",
 			"text": "Testing 123"})
 
@@ -36,9 +36,8 @@ def result():
         #msg = Message(subject, sender = 'billy.chan@macys.com' , recipients = [email])
         #msg.body = message
         #mail.send(msg)
-        #send_simple_message()
-        return MAILGUN_API_KEY
-        #return render_template('index.html', sent = True)
+        send_simple_message()
+        return render_template('index.html', sent = True)
     else:
         return render_template('index.html')
 
