@@ -27,33 +27,6 @@ def send_simple_message_mailgun(email, subject, message):
 			"subject": subject,
 			"text": message})
 
-# Config - Cloudmailin
-CLOUDMAILIN_FORWARD_ADDRESS = os.environ.get("CLOUDMAILIN_FORWARD_ADDRESS")
-CLOUDMAILIN_PASSWORD =  os.environ.get("CLOUDMAILIN_SEND_PASSWORD")
-CLOUDMAILIN_SECRET =  os.environ.get("CLOUDMAILIN_SECRET")
-CLOUDMAILIN_USERNAME =  os.environ.get("CLOUDMAILIN_SEND_USERNAME")
-
-# Cloudmailin
-def send_simple_message_cloud():
-    hostname = "smtp.cloudmta.net"
-    username = CLOUDMAILIN_USERNAME
-    password = CLOUDMAILIN_PASSWORD
-
-    message = ("""\
-Subject: Test from Python
-To: herokutext@gmail.com
-From: from@example.com
-
-This message is sent from Python.""")
-
-    server = smtplib.SMTP(hostname, 587)
-    server.ehlo() # Can be omitted
-    server.starttls(context=ssl.create_default_context()) # Secure the connection
-    server.login(username, password)
-    server.sendmail("kk@gmail.com", "herokutext@gmail.com", message)
-    server.quit
-    return True
-
 
 
 @app.route('/', methods = ['GET', 'POST'])
@@ -66,8 +39,8 @@ def result():
         #msg = Message(subject, sender = 'billy.chan@macys.com' , recipients = [email])
         #msg.body = message
         #mail.send(msg)
-        send_simple_message_cloud()
-        return render_template('index.html')
+        send_simple_message_mailgun(email, subject, message)
+        return render_template('index.html', sent = True)
     else:
         return render_template('index.html')
 
