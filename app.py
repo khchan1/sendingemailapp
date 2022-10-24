@@ -19,7 +19,7 @@ def send_simple_message():
 	return requests.post(
 		"https://api.mailgun.net/v3/" + str(MAILGUN_DOMAIN) + "/messages",
 		auth=("api", MAILGUN_API_KEY),
-		data={"from": "Excited User <mailgun@" + str(MAILGUN_DOMAIN) ,
+		data={"from": "billy.chan@macys.com",
 			"to": ["herokutext@gmail.com"],
 			"subject": "Sending function - Testing",
 			"text": "Testing 123"})
