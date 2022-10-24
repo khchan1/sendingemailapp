@@ -52,6 +52,7 @@ This message is sent from Python.""")
     server.login(username, password)
     server.sendmail(CLOUDMAILIN_FORWARD_ADDRESS, "herokutext@gmail.com", message)
     server.quit
+    return True
 
 
 
@@ -66,7 +67,7 @@ def result():
         #msg.body = message
         #mail.send(msg)
         send_simple_message_cloud()
-        return render_template('index.html', sent = True)
+        return render_template('index.html')
     else:
         return render_template('index.html')
 
