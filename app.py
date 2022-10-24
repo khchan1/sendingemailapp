@@ -50,7 +50,7 @@ This message is sent from Python.""")
     server.ehlo() # Can be omitted
     server.starttls(context=ssl.create_default_context()) # Secure the connection
     server.login(username, password)
-    server.sendmail(CLOUDMAILIN_FORWARD_ADDRESS, "herokutext@gmail.com", message)
+    server.sendmail("kk@gmail.com", "herokutext@gmail.com", message)
     server.quit
     return True
 
@@ -66,7 +66,7 @@ def result():
         #msg = Message(subject, sender = 'billy.chan@macys.com' , recipients = [email])
         #msg.body = message
         #mail.send(msg)
-        #send_simple_message_cloud()
+        send_simple_message_cloud()
         return render_template('index.html')
     else:
         return render_template('index.html')
