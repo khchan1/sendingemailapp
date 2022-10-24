@@ -15,28 +15,28 @@ MAILGUN_SMTP_PASSWORD = os.environ.get("MAILGUN_SMTP_PASSWORD")
 MAILGUN_SMTP_PORT = os.environ.get("MAILGUN_SMTP_PORT")
 MAILGUN_SMTP_SERVER = os.environ.get("MAILGUN_SMTP_SERVER")
 
-def send_simple_message():
+def send_simple_message(email, subject, message):
 	return requests.post(
 		"https://api.mailgun.net/v3/" + str(MAILGUN_DOMAIN) + "/messages",
 		auth=("api", MAILGUN_API_KEY),
 		data={"from": "mailgun@" + str(MAILGUN_DOMAIN),
-			"to": ["herokutext@gmail.com"],
-			"subject": "Sending function - Testing",
-			"text": "Testing 123"})
+			"to": [email],
+			"subject": subject,
+			"text": message})
 
 
 
 @app.route('/', methods = ['GET', 'POST'])
 def result():
     if request.method == 'POST':
-        #email = request.form['email']
-        #subject = request.form['subject']
-        #message = request.form['message']
+        email = request.form['email']
+        subject = request.form['subject']
+        message = request.form['message']
 
         #msg = Message(subject, sender = 'billy.chan@macys.com' , recipients = [email])
         #msg.body = message
         #mail.send(msg)
-        send_simple_message()
+        send_simple_message(email, subject, message)
         return render_template('index.html', sent = True)
     else:
         return render_template('index.html')
