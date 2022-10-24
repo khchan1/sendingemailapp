@@ -66,7 +66,7 @@ def result():
         #msg = Message(subject, sender = 'billy.chan@macys.com' , recipients = [email])
         #msg.body = message
         #mail.send(msg)
-        send_simple_message_cloud()
+        #send_simple_message_cloud()
         return render_template('index.html')
     else:
         return render_template('index.html')
