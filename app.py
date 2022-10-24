@@ -36,8 +36,9 @@ def result():
         #msg = Message(subject, sender = 'billy.chan@macys.com' , recipients = [email])
         #msg.body = message
         #mail.send(msg)
-        send_simple_message()
-        return render_template('index.html', sent = True)
+        #send_simple_message()
+        return MAILGUN_API_KEY
+        #return render_template('index.html', sent = True)
     else:
         return render_template('index.html')
 
