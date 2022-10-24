@@ -28,14 +28,13 @@ def send_simple_message():
 @app.route('/', methods = ['GET', 'POST'])
 def result():
     if request.method == 'POST':
-        #email = request.form['email']
-        #subject = request.form['subject']
-        #message = request.form['message']
+        email = request.form['email']
+        subject = request.form['subject']
+        message = request.form['message']
 
-        #msg = Message(subject, sender = 'billy.chan@macys.com' , recipients = [email])
-        #msg.body = message
-        #mail.send(msg)
-        send_simple_message()
+        msg = Message(subject, sender = 'billy.chan@macys.com' , recipients = [email])
+        msg.body = message
+        mail.send(msg)
         return render_template('index.html', sent = True)
     else:
         return render_template('index.html')
