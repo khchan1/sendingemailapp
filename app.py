@@ -16,7 +16,7 @@ mail = Mail(app) # Instance
 
 def send_simple_message():
 	return requests.post(
-		"https://api.mailgun.net/v3/index-send/messages",
+		"https://api.mailgun.net/v3/postmaster@sandbox8706cdc9df464716bd0a18de0fa513e2.mailgun.org/messages",
 		auth=("api", "5f143565005ce4f6d999f47f42de8593-8845d1b1-88c9d249"),
 		data={"from": "billy.chan@macys.com",
 			"to": ["billy.chan@macys.com", "billy.chan@macys.com"],
@@ -28,13 +28,14 @@ def send_simple_message():
 @app.route('/', methods = ['GET', 'POST'])
 def result():
     if request.method == 'POST':
-        email = request.form['email']
-        subject = request.form['subject']
-        message = request.form['message']
+        #email = request.form['email']
+        #subject = request.form['subject']
+        #message = request.form['message']
 
-        msg = Message(subject, sender = 'billy.chan@macys.com' , recipients = [email])
-        msg.body = message
-        mail.send(msg)
+        #msg = Message(subject, sender = 'billy.chan@macys.com' , recipients = [email])
+        #msg.body = message
+        #mail.send(msg)
+        send_simple_message()
         return render_template('index.html', sent = True)
     else:
         return render_template('index.html')
