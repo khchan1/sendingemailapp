@@ -50,7 +50,7 @@ This message is sent from Python.""")
     server.ehlo() # Can be omitted
     server.starttls(context=ssl.create_default_context()) # Secure the connection
     server.login(username, password)
-    server.sendmail("from@example.com", "herokutext@gmail.com", message)
+    server.sendmail("from@cloudmailin.com", "herokutext@gmail.com", message)
     server.quit
 
 
